@@ -137,12 +137,12 @@ jobs:
       # USER CONFIG (variable): CLIQ_NOTIFICATION_MODE
       # Values: "user" (default here) or "bot". Use "bot" to post as a
       # configured Cliq bot instead of the webhook's default identity.
-      CLIQ_NOTIFICATION_MODE: ${{ vars.CLIQ_NOTIFICATION_MODE || 'bot' }}
+      CLIQ_NOTIFICATION_MODE: ${{ vars.CLIQ_NOTIFICATION_MODE || 'user' }}
 
       # USER CONFIG (variable): CLIQ_BOT_UNIQUE_NAME
       # Required ONLY when CLIQ_NOTIFICATION_MODE=bot above. Set it to the
       # bot's unique name so it gets appended to the endpoint as a query param.
-      CLIQ_BOT_UNIQUE_NAME: ${{ vars.CLIQ_BOT_UNIQUE_NAME || 'aiservicebot' }}
+      CLIQ_BOT_UNIQUE_NAME: ${{ vars.CLIQ_BOT_UNIQUE_NAME || '' }}
 
       # USER CONFIG (variable OR in-file): CLIQ_THREAD_FIELD_ID — REQUIRED.
       # The GitHub Project (v2) field used to store the Cliq thread reference
@@ -156,7 +156,7 @@ jobs:
       #   GITHUB_PROJECT_THREAD_FIELD_ID: ${{ vars.CLIQ_THREAD_FIELD_ID || 'PVTF_lADOAbC123' }}
       # Leaving both the Variable and the fallback empty will prevent thread
       # reuse from working correctly.
-      GITHUB_PROJECT_THREAD_FIELD_ID: ${{ vars.CLIQ_THREAD_FIELD_ID || '401236993' }}
+      GITHUB_PROJECT_THREAD_FIELD_ID: ${{ vars.CLIQ_THREAD_FIELD_ID || '' }}
 
       # USER CONFIG (variable OR in-file): CLIQ_PROJECT_NUMBER — REQUIRED.
       # The GitHub Project (v2) number that PRs get logged into for thread
@@ -171,7 +171,7 @@ jobs:
       # Option 2 (quick edit, private repos): leave the Variable unset and
       #   replace the '' after the || with your project number directly, e.g.:
       #   GITHUB_PROJECT_NUMBER: ${{ vars.CLIQ_PROJECT_NUMBER || '1' }}
-      GITHUB_PROJECT_NUMBER: ${{ vars.CLIQ_PROJECT_NUMBER || '1' }}
+      GITHUB_PROJECT_NUMBER: ${{ vars.CLIQ_PROJECT_NUMBER || '' }}
 
       # ---------------------------------------------------------------------
       # (C) In-file workflow inputs — edit these directly in this file.
@@ -188,13 +188,13 @@ jobs:
       # Which AI provider to call. Supported: openai | claude | gemini.
       # The matching API key must be stored in the AI_REVIEW_TOKEN
       # Environment secret (see cliq-production environment secrets above).
-      AI_REVIEW_SERVICE: gemini
+      AI_REVIEW_SERVICE: claude
 
       # USER CONFIG (in-file): AI_REVIEW_MODEL
       # Model name for the chosen AI_REVIEW_SERVICE above. Leave blank ("")
       # to fall back to that provider's default model:
       #   openai -> gpt-4.1-mini | claude -> claude-sonnet-5 | gemini -> gemini-2.5-flash  
-      AI_REVIEW_MODEL: gemini-2.5-flash
+      AI_REVIEW_MODEL: claude-sonnet-5
     steps:
       # ---------------------------------------------------------------------
       # (B) Environment SECRETS — required, must be set on the protected
