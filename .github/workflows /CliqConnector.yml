@@ -137,7 +137,7 @@ jobs:
       # USER CONFIG (variable): CLIQ_NOTIFICATION_MODE
       # Values: "user" (default here) or "bot". Use "bot" to post as a
       # configured Cliq bot instead of the webhook's default identity.
-      CLIQ_NOTIFICATION_MODE: ${{ vars.CLIQ_NOTIFICATION_MODE || 'user' }}
+      CLIQ_NOTIFICATION_MODE: ${{ vars.CLIQ_NOTIFICATION_MODE || '' }}
 
       # USER CONFIG (variable): CLIQ_BOT_UNIQUE_NAME
       # Required ONLY when CLIQ_NOTIFICATION_MODE=bot above. Set it to the
